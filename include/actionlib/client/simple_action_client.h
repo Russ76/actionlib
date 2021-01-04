@@ -72,7 +72,7 @@ template<class ActionSpec>
 class SimpleActionClient
 {
 private:
-  ACTION_DEFINITION(ActionSpec);
+  ACTION_DEFINITION(ActionSpec)
   typedef ClientGoalHandle<ActionSpec> GoalHandleT;
   typedef SimpleActionClient<ActionSpec> SimpleActionClientT;
 
@@ -338,8 +338,6 @@ template<class ActionSpec>
 SimpleClientGoalState SimpleActionClient<ActionSpec>::getState() const
 {
   if (gh_.isExpired()) {
-    ROS_ERROR_NAMED("actionlib",
-      "Trying to getState() when no goal is running. You are incorrectly using SimpleActionClient");
     return SimpleClientGoalState(SimpleClientGoalState::LOST);
   }
 
